@@ -1,6 +1,7 @@
 import logging
 from collections import OrderedDict
 from datetime import timedelta
+import os
 from typing import Union, Optional, Tuple, List
 
 import matplotlib
@@ -201,7 +202,7 @@ def plot_rolling_hull(trj: TrajaDataFrame, window=100, step=20, areas=False, **k
 def plot_period(trj: TrajaDataFrame, col="x", dark=(7, 19), **kwargs):
     time_col = traja._get_time_col(trj)
     _trj = trj.set_index(time_col)
-    if not col in _trj:
+    if col not in _trj:
         raise ValueError(f"{col} not a column in dataframe")
     series = _trj[col]
     fig, ax = plt.subplots()
@@ -466,7 +467,7 @@ def plot(
         else:
             cbar_labels = trj.index[indices].values
             cbar_labels = np.round(cbar_labels, 6)
-        if fps != None and fps > 0 and fps != 1 and show_time:
+        if fps is not None and fps > 0 and fps != 1 and show_time:
             cbar_labels = cbar_labels / fps
 
     cbar.set_ticks(indices)
