@@ -128,7 +128,7 @@ def polar_to_z(r: float, theta: float) -> complex:
     return r * np.exp(1j * theta)
 
 
-def cartesian_to_polar(xy: np.ndarray) -> (float, float):
+def cartesian_to_polar(xy: np.ndarray) -> Tuple[float, float]:
     """Convert :class:`numpy.ndarray` ``xy`` to polar coordinates ``r`` and ``theta``.
 
     Args:
